@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: bfsh-eureka
+server:
+  port: 8761 #服务端口
+eureka:
+  client:
+    service-url: #Eureka客户端与Eureka服务端进行交互的地址
+      defaultZone: http://172.25.252.220:${server.port}/eureka
+    register-with-eureka: false #是否将自己注册到Eureka服务中，本身就是所有无需注册
+    fetch-registry: false #是否从Eureka中获取注册信息
