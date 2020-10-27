@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
         <module name="eurake" />
+        <module name="user" />
       </profile>
     </annotationProcessing>
   </component>
@@ -16,6 +17,7 @@
       <module name="common" options="-parameters" />
       <module name="demo_parent" options="-parameters" />
       <module name="eurake" options="-parameters" />
+      <module name="user" options="-parameters" />
     </option>
   </component>
 </project>
