@@ -13,6 +13,11 @@ public class ResultDto {
     public ResultDto() {
     }
 
+    public ResultDto(Integer code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
     public ResultDto(Integer code, String message, Object data) {
         this.code = code;
         this.message = message;

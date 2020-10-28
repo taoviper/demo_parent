@@ -1,7 +1,10 @@
 package com.demo.vo;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +13,7 @@ import java.util.Date;
  * @date 2020-10-27 9:36
  */
 @Data
-public class UserInfo {
+public class UserInfo  {
 
     private String uuid;
 

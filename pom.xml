@@ -12,6 +12,7 @@
         <module>eurake</module>
         <module>common</module>
         <module>user</module>
+        <module>amq</module>
     </modules>
 
     <parent>
