@@ -32,7 +32,7 @@ public class SwaggerConfig {
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("利用swagger构建api文档")
+                .title("测试wagger2构建api文档")
                 .description("简单使用swagger2")
                 .version("1.0")
                 .build();

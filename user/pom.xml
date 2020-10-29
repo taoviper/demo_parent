@@ -115,6 +115,12 @@
             <version>2.9.2</version>
         </dependency>
 
+        <!--Spring Security 提供了BCryptPasswordEncoder-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

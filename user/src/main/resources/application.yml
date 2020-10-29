@@ -19,9 +19,13 @@ spring:
 ## 配置rabbitmq
   rabbitmq:
     host: 192.168.209.129
-## 配置redis
+  ## 配置redis
   redis:
     host: 192.168.209.129
+#  security:
+#    user:
+#      name: admin
+#      password: admin
 eureka:
   client:
     service-url:
@@ -47,8 +51,6 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     call-setters-on-nulls: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-
 
 
 

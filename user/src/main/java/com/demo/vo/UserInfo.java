@@ -1,10 +1,10 @@
 package com.demo.vo;
 
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 
-import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -17,14 +17,17 @@ public class UserInfo  {
 
     private String uuid;
 
+    @NotNull(message = "用户名不能为空")
     private String username;
 
+    @NotNull(message = "手机号不能为空")
     private String phone;
 
     private int sex;
 
     private int age;
 
+    @NotNull(message = "密码不能为空")
     private String password;
 
     private Date createTime;
@@ -33,4 +36,7 @@ public class UserInfo  {
 
     private int deleteMark;
 
+    //数据库不需要的字段 还可以使用注解  @Transient
+    @TableField(exist = false)
+    private String messageCode;
 }

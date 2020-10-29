@@ -1,8 +1,8 @@
 package com.demo.controller;
 
-import com.demo.service.IUserInfoService;
+import com.demo.service.IUserManageService;
+import com.demo.vo.LoginVo;
 import com.demo.vo.UserInfo;
-import constant.StatusCode;
 import entity.ResultDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,8 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import utils.UUIDUtil;
 
+import javax.validation.Valid;
 
 
 /**
@@ -28,15 +28,15 @@ public class UserInfoController {
     private static final Logger logger = LoggerFactory.getLogger(UserInfoController.class);
 
     @Autowired
-    private IUserInfoService userInfoServiceImpl;
+    private IUserManageService userManageServiceImpl;
 
     /**
-     * 获取短信验证码
+     * 测试controller
      *
      */
     @ApiOperation(value = "测试swagger2是否可用",notes = "多学习")
-    @RequestMapping("/test")
-    private ResultDto test(){
+    @GetMapping("/test")
+    public ResultDto test(){
         logger.info("start  test start,param:{}");
         System.out.println("测试");
         logger.info("end  test end");
@@ -49,41 +49,33 @@ public class UserInfoController {
      */
     @ApiOperation(value = "获取短信验证码",notes = "多学习")
     @PostMapping("/messageCode/{phone}")
-    @ResponseBody
-    private ResultDto getMessageCode(@PathVariable @ApiParam  String phone){
+    public ResultDto getMessageCode(@PathVariable @ApiParam  String phone){
         logger.info("start UserInfoController getMessageCode start,param:{}",phone);
-        if (phone ==null){
-            return new ResultDto(StatusCode.FAIL,StatusCode.PARAM_MISSING);
-        }
-        userInfoServiceImpl.getMessageCode(phone);
-
-
-
-        //03使用消息中间件消费
-        return new ResultDto(StatusCode.SUCCESS,StatusCode.OPERATE_SUCCESS);
+        ResultDto resultDto = userManageServiceImpl.getMessageCode(phone);
+        logger.info("end getMessageCode,res:{}",resultDto);
+        return resultDto;
     }
 
-
     /**
-     * 新增用户信息
-     * @param req reqParam
+     * 注册用户
+     * @param req  入参
      * @return res
      */
     @ApiOperation(value = "新增用户",notes = "测试数据库")
     @PostMapping("/register")
-    @ResponseBody
-    private ResultDto addUserInfo(@RequestBody UserInfo req){
-        logger.info("start UserInfoController addUserInfo method,param:{}",req);
-        if (req ==null){
-            return new ResultDto(StatusCode.FAIL,"参数异常",null);
-        }
+    public ResultDto register(@RequestBody @Valid UserInfo req){
+        logger.info("start UserInfoController register method,param:{}",req);
+        ResultDto resultDto  = userManageServiceImpl.addUserInfo(req);
+        logger.info("end UserInfoController register method,res:{}",resultDto);
+        return resultDto;
+    }
 
-        req.setUuid(UUIDUtil.getUUID());
-        boolean save = userInfoServiceImpl.save(req);
-        if (!save){
-            return new ResultDto(StatusCode.FAIL,"新增用户失败",null);
-        }
-        logger.info("end UserInfoController addUserInfo method,param:{}",req);
-        return new ResultDto(StatusCode.SUCCESS,"新增用户成功",null);
+    @ApiOperation(value = "用户登录",notes = "测试数据库")
+    @PostMapping("/login")
+    public ResultDto login(@RequestBody @Valid LoginVo req){
+        logger.info("start UserInfoController login method,param:{}",req);
+        ResultDto res = userManageServiceImpl.login(req);
+        logger.info("end UserInfoController login method,param:{}",req);
+        return res;
     }
 }
