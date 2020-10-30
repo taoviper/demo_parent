@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @version 1.0
  * @date 2020-10-28 17:06
  */
-@ControllerAdvice
-public class BaseExceptionHandler {
-
-    private static final Logger logger = LoggerFactory.getLogger(BaseExceptionHandler.class);
-
-    @ExceptionHandler(Exception.class)
-    @ResponseBody
-    public ResultDto error(Exception e){
-        logger.error(e.getMessage());
-        return new ResultDto(StatusCode.EXCEPTION,e.getMessage());
-    }
-
-
-}
+//@ControllerAdvice
+//public class BaseExceptionHandler {
+//
+//    private static final Logger logger = LoggerFactory.getLogger(BaseExceptionHandler.class);
+//
+//    @ExceptionHandler(Exception.class)
+//    @ResponseBody
+//    public ResultDto error(Exception e){
+//        logger.error(e.getMessage());
+//        return new ResultDto(StatusCode.EXCEPTION,e.getMessage());
+//    }
+//
+//
+//}

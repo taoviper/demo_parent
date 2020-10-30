@@ -21,4 +21,6 @@ public class StatusCode {
 
     public static final String OPERATE_EXCEPTION = "操作异常";
 
+    public static final String QUERY_RESULT_EMPTY = "查询结果为空";
+
 }
