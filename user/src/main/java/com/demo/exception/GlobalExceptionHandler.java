@@ -3,7 +3,6 @@ package com.demo.exception;
 import com.demo.enums.ResponseVo;
 import com.demo.enums.ResultEnum;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +33,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public ResponseVo error(Exception e){
+        e.printStackTrace();
         log.error(e.getMessage());
         return new ResponseVo(ResultEnum.UNKNOWN_ERROR.getCode(),e.getMessage());
     }

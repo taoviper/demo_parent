@@ -1,8 +1,13 @@
 package com.demo.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.demo.service.IUserInfoService;
 import com.demo.service.IUserManageService;
 import com.demo.vo.LoginVo;
 import com.demo.vo.UserInfo;
+import com.demo.vo.UserInfoRole;
+import com.demo.vo.UserInfoRoleVo;
+import constant.StatusCode;
 import entity.ResultDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,9 +15,13 @@ import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -29,6 +38,9 @@ public class UserInfoController {
 
     @Autowired
     private IUserManageService userManageServiceImpl;
+
+    @Autowired
+    private IUserInfoService userInfoServiceImpl;
 
     /**
      * 测试controller
@@ -77,5 +89,37 @@ public class UserInfoController {
         ResultDto res = userManageServiceImpl.login(req);
         logger.info("end UserInfoController login method,param:{}",req);
         return res;
+    }
+
+
+    //------------------------------------------------------
+    //分页查询用户信息
+    @ApiOperation(value = "用户信息分页查询",notes = "测试数据库")
+    @PostMapping("/page")
+    public ResultDto page(@RequestBody UserInfoRoleVo vo){
+        logger.info("start UserInfoController page method");
+        /**
+         * 查询所有
+         */
+        // List<UserInfo> page = userInfoServiceImpl.list();
+        //List<String> collect = page.stream().map(UserInfo::getUsername).collect(Collectors.toList());
+        /**
+         * 分页查
+         */
+        ResultDto page = userInfoServiceImpl.page(vo);
+
+        logger.info("end UserInfoController page method,param:{}");
+        return new ResultDto(StatusCode.SUCCESS,StatusCode.OPERATE_SUCCESS,page);
+    }
+
+
+    //分页查询用户信息
+    @ApiOperation(value = "自定义分页查询",notes = "测试数据库")
+    @PostMapping("/customPage")
+    public ResultDto customPage(@RequestBody UserInfoRoleVo userInfoRoleReq){
+        logger.info("start UserInfoController customPage method");
+        Page<UserInfoRole> page = new Page<>(userInfoRoleReq.getCurrentPage(),userInfoRoleReq.getPageSize());
+        List<UserInfoRole> list = userInfoServiceImpl.selectCustomPage(page,userInfoRoleReq);
+        return new ResultDto(StatusCode.SUCCESS,StatusCode.OPERATE_SUCCESS,list);
     }
 }

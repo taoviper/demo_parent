@@ -36,7 +36,9 @@ public class UserInfo  {
 
     private int deleteMark;
 
-    //数据库不需要的字段 还可以使用注解  @Transient
+    private int roleId;
+
+//    //数据库不需要的字段 还可以使用注解  @Transient
     @TableField(exist = false)
     private String messageCode;
 }

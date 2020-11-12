@@ -1,7 +1,6 @@
 package com.demo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.demo.exception.ParamaErrorException;
 import com.demo.service.IUserInfoService;
 import com.demo.service.IUserManageService;
 import com.demo.utils.RandomCode;
@@ -60,12 +59,12 @@ public class UserManageServiceImpl implements IUserManageService {
             return new ResultDto(StatusCode.FAIL,"手机格式不正确,请输入11位手机号");
         }
         //02查询手机号是否已存在数据库
-        QueryWrapper<UserInfo> condition = new QueryWrapper<>();
-        condition.eq("phone",phone);
-        UserInfo one = userInfoServiceImpl.getOne(condition);
-        if (one !=null){
-            throw new ParamaErrorException("手机号已被注册,请更换手机号");
-        }
+//        QueryWrapper<UserInfo> condition = new QueryWrapper<>();
+//        condition.eq("phone",phone);
+//        UserInfo one = userInfoServiceImpl.getOne(condition);
+//        if (one !=null){
+//            throw new ParamaErrorException("手机号已被注册,请更换手机号");
+//        }
         //03生成随机六位数验证码
         String sixCode = RandomCode.sixCode();
 
@@ -91,7 +90,7 @@ public class UserManageServiceImpl implements IUserManageService {
     @Override
     public ResultDto login(LoginVo req) {
         QueryWrapper<UserInfo> condition = new QueryWrapper<>();
-        condition.eq("phone",req.getPhone());
+        condition.eq("username",req.getUsername());
         UserInfo one = userInfoServiceImpl.getOne(condition);
         if (one == null){
             return new ResultDto();
