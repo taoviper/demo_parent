@@ -6,6 +6,6 @@ server:
 eureka:
   client:
     service-url: #Eureka客户端与Eureka服务端进行交互的地址
-      defaultZone: http://172.25.252.182:${server.port}/eureka
+      defaultZone: http://172.25.253.34:${server.port}/eureka
     register-with-eureka: false #是否将自己注册到Eureka服务中，本身就是所有无需注册
     fetch-registry: false #是否从Eureka中获取注册信息

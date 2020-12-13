@@ -13,6 +13,7 @@
         <module>common</module>
         <module>user</module>
         <module>amq</module>
+        <module>base</module>
     </modules>
 
     <parent>

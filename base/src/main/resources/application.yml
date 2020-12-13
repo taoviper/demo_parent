@@ -1,0 +1,22 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: base
+  ##  max-file-size  设置单个文件的大小
+  ##  max-request-size 单次请求的文件的总大小
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.25.253.62:8761/eureka
+  instance:
+    prefer-ip-address: true
+
+
+
+
+

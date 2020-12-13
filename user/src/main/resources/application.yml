@@ -1,5 +1,8 @@
 server:
   port: 8080
+#  ## 配置上传文件最大100M
+#  tomcat:
+#    max-swallow-size: 100MB
 spring:
   application:
     name: user
@@ -22,6 +25,12 @@ spring:
   ## 配置redis
   redis:
     host: 192.168.209.129
+    ##  max-file-size  设置单个文件的大小
+    ##  max-request-size 单次请求的文件的总大小
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
 #  security:
 #    user:
 #      name: admin
@@ -29,7 +38,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://172.25.252.182:8761/eureka
+      defaultZone: http://172.25.252.62:8761/eureka
   instance:
     prefer-ip-address: true
 
