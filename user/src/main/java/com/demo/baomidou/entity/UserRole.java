@@ -1,4 +1,4 @@
-package com.demo.entity;
+package com.demo.baomidou.entity;
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author taoweipu
- * @since 2020-11-11
+ * @since 2020-12-21
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

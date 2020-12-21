@@ -85,7 +85,7 @@ public class CodeGeneration {
         //包名配置
         PackageConfig packageConfig = new PackageConfig();
         //父包名
-        packageConfig.setParent("com.demo")
+        packageConfig.setParent("com.demo.baomidou")
                 .setMapper("dao")
                 .setService("service")
                 .setController("controller")

@@ -1,6 +1,6 @@
-package com.demo.dao;
+package com.demo.baomidou.dao;
 
-import com.demo.entity.UserInfo;
+import com.demo.baomidou.entity.UserInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author taoweipu
- * @since 2020-11-11
+ * @since 2020-12-21
  */
 public interface UserInfoDao extends BaseMapper<UserInfo> {
 

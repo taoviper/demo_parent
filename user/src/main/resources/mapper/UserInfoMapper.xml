@@ -1,64 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.demo.mapper.UserInfoMapper">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.baomidou.dao.UserInfoDao">
 
-    <select id="page" parameterType="com.demo.vo.UserInfoRoleVo" resultType="com.demo.vo.UserInfoRole" >
-        select
-        T1.username as username,
-        T1.phone as phone,
-        T1.sex as sex,
-        T1.age as age,
-        T2.role_name as roleName
-        from user_info T1 lEFT JOIN user_role T2
-        ON T1.role_id = T2.role_id
-        order by T1.create_time asc
-        limit #{pagesize} offset #{offset}
-    </select>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.demo.baomidou.entity.UserInfo">
+        <id column="uuid" property="uuid" />
+        <result column="username" property="username" />
+        <result column="phone" property="phone" />
+        <result column="sex" property="sex" />
+        <result column="age" property="age" />
+        <result column="password" property="password" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="delete_mark" property="deleteMark" />
+        <result column="role_id" property="roleId" />
+    </resultMap>
 
-    <select id="total" parameterType="com.demo.vo.UserInfoRoleVo" resultType="java.lang.Integer">
-        select count(1) from user_info T1 lEFT JOIN user_role T2
-        ON T1.role_id = T2.role_id
-    </select>
-
-    <select id="customPage" parameterType="com.demo.vo.UserInfoRoleVo" resultType="com.demo.vo.UserInfoRole">
-        SELECT COUNT(1)
-        FROM user_info T1 lEFT JOIN user_role T2
-        ON T1.role_id = T2.role_id
-        <where>
-            <if test="username != null and '' != username ">
-                AND username like CONCAT(CONCAT('%', #{username}), '%');
-            </if>
-            <if test="age !=null">
-                AND age =#{age,jdbcType=INTEGER}
-            </if>
-            <if test="roleName !=null and '' != username">
-                AND role_name =#{roleName,jdbcType=VARCHAR}
-            </if>
-        </where>
-    </select>
-    
-    <select id="getPage" parameterType="com.demo.vo.UserInfoRoleVo" resultType="com.demo.vo.UserInfoRole">
-        select <include refid="User_Group_Field"/>
-        from user_info T1 lEFT JOIN user_role T2
-        ON T1.role_id = T2.role_id
-        <where>
-            <if test="username != null and ''!= username ">
-                AND T1.username like CONCAT(CONCAT('%', #{username}), '%');
-            </if>
-            <if test="age !=null">
-                AND T1.age =#{age,jdbcType=INTEGER}
-            </if>
-            <if test="roleName !=null and '' != username">
-                AND T2.role_name =#{roleName,jdbcType=VARCHAR}
-            </if>
-        </where>
-    </select>
-
-    <sql id="User_Group_Field">
-        T1.username as username,
-        T1.phone as phone,
-        T1.sex as sex,
-        T1.age as age,
-        T2.role_name as roleName
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        uuid, username, phone, sex, age, password, create_time, update_time, delete_mark, role_id
     </sql>
+
 </mapper>
