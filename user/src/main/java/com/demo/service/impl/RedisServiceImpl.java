@@ -37,7 +37,7 @@ public class RedisServiceImpl implements IRedisService {
         if (null == one ){
            userInfoServiceImpl.save(entity);
 
-            System.out.println("合并分支");
+
         }
 
 
