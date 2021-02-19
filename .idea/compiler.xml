@@ -17,7 +17,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="amq" options="-parameters" />
       <module name="common" options="-parameters" />
-      <module name="demo_parent" options="-parameters" />
+      <module name="demo_parent" options="" />
       <module name="eurake" options="-parameters" />
       <module name="user" options="-parameters" />
     </option>
